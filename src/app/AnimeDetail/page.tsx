@@ -7,6 +7,8 @@ import {Descriptions} from 'antd';
 
 const {TextArea} = Input;
 import type {DescriptionsProps} from 'antd';
+import AnimeHeader from "@/components/AnimeHeader";
+import AnimeFooter from "@/components/AnimeFooter";
 
 
 const cardStyle: React.CSSProperties = {
@@ -78,6 +80,7 @@ function AnimeDetail() {
 
 
     return <>
+        <AnimeHeader/>
         <Card style={cardStyle} styles={{body: {padding: 0, overflow: 'hidden'}}}>
             <Flex justify="space-between">
                 <img
@@ -134,6 +137,7 @@ function AnimeDetail() {
                 )}
             />
         </Card>
+        <AnimeFooter/>
     </>
 }
 
