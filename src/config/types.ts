@@ -2,8 +2,9 @@ import {TArray} from "ts-interface-checker";
 import {list} from "postcss";
 
 export interface animeSearch {
+    id:number,
     title:string,
-    condition:string[],
+    conditions:string[],
 }
 
 export interface anime{

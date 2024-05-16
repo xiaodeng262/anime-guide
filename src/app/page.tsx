@@ -13,20 +13,24 @@ export default function Home() {
     const [animeSearchList, setAnimeSearch] = useState<animeSearch[]>(
         [
             {
+                id: 1,
                 title: '首字母',
-                condition: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+                conditions: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
             },
             {
+                id: 2,
                 title: '状态',
-                condition: ['完结', '连载']
+                conditions: ['完结', '连载']
             },
             {
+                id: 3,
                 title: '类型',
-                condition: ['玄幻', '热血', '恋爱', '青春']
+                conditions: ['玄幻', '热血', '恋爱', '青春']
             },
             {
+                id: 4,
                 title: '年份',
-                condition: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+                conditions: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
             }
         ]
     )
@@ -98,39 +102,33 @@ export default function Home() {
                     <Row>
                         {
                             animeSearchList.map((item, index) => {
-                                return <>
-                                    <Col span={24} className={styles.animeCol}>
+                                return (
+                                    <Col span={24} className={styles.animeCol} key={item.id}>
                                         <span>{item.title}:</span>
                                         <ul className={styles.animeSearch}>
                                             {
-                                                item.condition.map((item) => {
-                                                    return <li key={index}>{item}</li>
+                                                item.conditions.map((condition, conditionIndex) => {
+                                                    // 使用 conditionIndex 作为每个 condition 的 key
+                                                    return <li key={conditionIndex}>{condition}</li>
                                                 })
                                             }
                                         </ul>
                                     </Col>
-                                    {index !== animeSearchList.length - 1 && <DividerWithMargin/>}
-                                </>
+                                );
                             })
-
                         }
                     </Row>
                 </Card>
                 <br/>
                 <Card>
                     <Row gutter={40}>
-                        {
-                            animeList.map((item, index) => {
-                                return <>
-                                    <Col xs={6} sm={6} md={6} lg={4} xl={4} key={index} style={{marginBottom: 20}}>
-                                        <Card hoverable cover={<img alt="example"
-                                                                    src={item.image}/>}>
-                                            <Meta title={item.title} description={item.title}/>
-                                        </Card>
-                                    </Col>
-                                </>
-                            })
-                        }
+                        {animeList.map((item, index) => (
+                            <Col xs={6} sm={6} md={6} lg={4} xl={4} key={`anime-${index}`} style={{marginBottom: 20}}>
+                                <Card hoverable cover={<img alt="example" src={item.image}/>}>
+                                    <Meta title={item.title} description={item.title}/>
+                                </Card>
+                            </Col>
+                        ))}
                     </Row>
                 </Card>
             </div>
